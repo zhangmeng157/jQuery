@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .b{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li class="one">4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li class="one">4</li>
+    <li>5</li>
+    <li class="two">6</li>
+    <li>7</li>
+    <li>8</li>
+    <li class="one">9</li>
+    <li>10</li>
+</ul>
+<div class="demo active"></div>
+<div class="a box">
+    <div>
+        <div class="b box">
+            <div class="item"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="box">
+    <div class="top">
+        <div class="title active">1</div>
+        <div class="title">2</div>
+        <div class="title">3</div>
+    </div>
+    <div class="bottom">
+        <div class="content active">1</div>
+        <div class="content">2</div>
+        <div class="content">3</div>
+    </div>
+</div>
+<div class="demo"></div>
+<div class="demo"></div>
+<div class="demo"></div>
+
+
+<div id="aa">
+    <div>
+        <div class="demo"></div>
+    </div>
+</div>
+<div class="one"></div>
+<div></div>
+<div></div>
+<div></div>
+<p class="p1"></p>
+<p class="p2"></p>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+    <span>dfggh</span>
+    <span>ccvvv</span>
+</ul>
+<ul>
+    <li></li>
+</ul>
+<h1>dgfh</h1>
+<h2>gfh</h2>
+<h3>dhytf</h3>
+<div class="a">hello</div>
+<form action="">
+    <input type="text">
+    <input type="password">
+    <input type="radio">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="submit" value="提交">
+    <input type="image" value="图片">
+    <input type="reset" value="重置">
+    <input type="button">
+    <input type="file">
+</form>
+<script src="jquery-3.3.1.js"></script>
+<script>
+    //过滤
+     $("ul>li")
+         .css("border","1px solid red")
+         .eq(1)  //过滤 获取返回对象的第一个元素，当参数大于等于0时，正向获取，0表示第一个，
+         // 当参数为负数，-1表示最后一个
+         .css("background","yellow");
+     $("ul>li").first().css("background","gray");//获取第一个元素，设置背景颜色为灰色
+     $("ul>li").last().css("background","blue");//获取最后一个元素，设置背景颜色为蓝色
+     console.log($(".demo").hasClass("active"));//检查当前的元素是否含有active类,有则返回true
+     console.log($("ul>li").filter(".one"));//获取出li元素中one类的元素集合。
+     //jQuery.fn.init(3) [li.one, li.one, li.one, prevObject: jQuery.fn.init(20)]
+     console.log($(".demo").is(".active"));//判断demo元素中是否有active元素，有返回true
+     console.log($("ul>li").map(function (index,ele) {
+         return ele.innerHTML;  //map 将一组元素转换成其他数组
+     }));//结果是标签里的内容组成的数组
+     console.log($('ul').has('.two'));//has 保留包含特定后代的元素，去掉那些不含有指定后代的元素。
+    //jQuery.fn.init [ul, prevObject: jQuery.fn.init(2)] 保留包含two类名的元素
+     console.log($('ul>li').not('.one'));//从li标签中删除one元素，从匹配元素的集合中删除与指定表达式匹配的元素
+     $("ul>li").slice(0,3).css("height",50);//从li标签中从0开始选取3个元素，高设为50px
+   //查找
+     console.log($("ul").children(".one"));//获取ul元素内的子元素one
+    //jQuery.fn.init(3) [li.one, li.one, li.one, prevObject: jQuery.fn.init(2)]
+     console.log($(".item").closest(".box"));//从元素本身开始，逐级向上级元素匹配，并返回最先匹配的元素。
+     //jQuery.fn.init [div.b.box, prevObject: jQuery.fn.init(1)]
+     console.log($(".box").find(".item"));//从box元素寻找，找到正在处理的元素后代item
+    //jQuery.fn.init [div.item, prevObject: jQuery.fn.init(2)]
+    $(".one").next().css("background","pink");//给每一个one元素的下一个元素(同辈元素)设置背景颜色pink
+     console.log($(".two").nextAll().addClass("three"));
+     //查找当前元素之后所有的同辈元素，给two元素之后的所有元素增加类名three
+    console.log($(".item").offsetParent());// 返回第一个匹配元素用于定位的父节点
+    //jQuery.fn.init [div.b.box, prevObject: jQuery.fn.init(1)]
+    console.log($(".one").parent());//返回包含one元素的父元素集合
+    //jQuery.fn.init(2) [ul, ul, prevObject: jQuery.fn.init(3)]
+     console.log($(".one").parents());//返回包含one元素的祖先元素的元素集合
+    //jQuery.fn.init(4) [ul, ul, body, html, prevObject: jQuery.fn.init(3)]
+    console.log($(".one").parentsUntil("body"));//查找one的祖先元素，找到body为止，但不包括body
+    //jQuery.fn.init(2) [ul, ul, prevObject: jQuery.fn.init(3)]
+    $(".two").prev().css("background","red");//找到two紧邻的前一个同辈元素设置背景色为红色
+     console.log($(".two").prevAll());//查找当前元素之前所有的同辈元素
+    //jQuery.fn.init(5) [li, li.one, li, li, li, prevObject: jQuery.fn.init(1)]
+     $(".two").prevUntil("one").css("height",50);//查找当前元素之前所有的同辈元素，直到遇到匹配的那个元素为止
+    console.log($(".a").siblings());//查找a的所有同辈元素
+     //串联
+    console.log($(".one").add(".two").css("background","blue"));//查找a的所有同辈元素
+    //jQuery.fn.init [div.a.box, prevObject: jQuery.fn.init(1)]
+    console.log($(".one").next().addBack());//获取每一个one之后的一个元素
+    console.log($(".one").contents());//查找匹配元素内部所有的子节点，包括文本节点
+    //jQuery.fn.init(3) [text, text, text, prevObject: jQuery.fn.init(3)]
+    $("ul>li").eq(2).css("border","1px solid #000").end().eq(3).css("border","3px solid black");
+    //回到最近的一个"破坏性"操作之前。
+
+
+
+    //innerHTML===>html()
+    console.log( $(".content").html());   //获取
+    $(".content").html();
+    $(".demo").html(function (index,oldval) {
+        return oldval+(index+1);
+    });
+    // style、getComputedStyle===>css()
+    $(".demo").css("width");    //获取
+    $(".demo").css("background","red");
+    $(".demo").css("width",300);      //给第一个设置
+    $(".demo").css("width",function (index,oldval) {
+        return (index+1)*100;
+    });
+    $(".demo").css({
+        color:"blue",
+        fontSize:"16px",
+        textAlign:"center",
+        lineHeight:"100px"
+    });//一次性设置不能省略单位
+    // classList、className====addClass、removeClass、toggleClass
+    $(".demo").addClass(function (index,oldval) {
+        return "text"+(index+1);
+    });
+    $(".demo").removeClass(function (index,oldval) {
+        return "text"+(index+1);
+    });
+
+
+    //选择器
+    console.log($("#aa"));//根据给定的ID匹配一个元素。
+    console.log($("div"));//根据给定的元素标签名匹配所有元素
+    console.log($("div,p"));//将每一个选择器匹配到的元素合并后一起返回。
+    console.log($(".one"));//根据给定的css类名匹配元素
+    console.log($("*"));//匹配所有元素
+    console.log($("#aa div"));//在给定的祖先元素下匹配所有的后代元素
+    console.log($("#aa>div"));//在给定的父元素下匹配所有的子元素
+    console.log($("div+p"));//匹配所有紧接在div元素后的p元素
+    console.log($("div~p"));//匹配div元素之后的所有p元素
+    console.log($("div:first"));//获取第一个元素
+    console.log($("div:not(.one)"));//排除.one
+    console.log($("ul>li:even").css("background","red"));//偶数个、下标 匹配所有索引值为偶数的元素，从 0 开始计数
+    console.log($("ul>li:odd").css("background","red"));//奇数个，下标 匹配所有索引值为奇数的元素，从 0 开始计数
+    $("ul>li:eq(2)").css("background","blue");//  下标从0开始,给第三个设置背景色蓝色
+    $("ul>li:gt(5)").css("background","#f33");//  >5 从第七个设置背景色 匹配所有大于给定索引值的元素
+    $("ul>li:lt(5)").css("background","#429957");// <5   排除5  给前五个设置背景色
+    $("ul>li:last").css("background","#e9f23e");// 最后一个   只看集合里的，有两组会选第二组最后一个
+    console.log($(":header").css("background","yellow") ) ;//匹配如 h1, h2, h3之类的标题元素
+    $(":focus").css("background","blue");//匹配当前获取焦点的元素
+    $(":root").css("background","blue");//选择该文档的根元素  html元素设置背景色
+    //target  //选择由文档URI的格式化识别码表示的目标元素。
+    console.log($("div:contains(hello)"));//找到包含hello的元素
+    // jQuery.fn.init [div.a, prevObject: jQuery.fn.init(1)]
+    console.log($(":empty"));//找空元素  匹配所有不包含子元素或者文本的空元素
+    //jQuery.fn.init(11) [meta, meta, meta, div.demo, div.one, div, div, div, p.p1, p.p2, script, prevObject: jQuery.fn.init(1)]
+    console.log($("div:has(.demo)").addClass("demo1"));//匹配含有选择器所匹配的元素的元素
+    //jQuery.fn.init(2) [div#aa.demo1, div.demo1, prevObject: jQuery.fn.init(1)]
+
+    console.log($("ul>li:first-child"));                         //在 ul 中查找第一个 li
+    $("ul>li:last-child").css("background","#e6ffec");           //匹配最后一个子元素,在ul中查找最后一个 li
+    $("ul>li:nth-child(2)").css("background","#5e50cc");         //在每个 ul 查找第2个li
+    $("ul>li:nth-last-child(3)").css("background","#42df06");     //在匹配的ul中查找倒数第三个li
+    $("ul>li:nth-last-of-type(2)").css("background","#3f2d52");    //在匹配的ul中查找倒数第二个li
+    console.log($("span:nth-of-type(2)"));                         //查找每个span，这个 span 是 其所有兄弟span元素中的第二个元素。
+    $("ul li:only-child").css("background","#429957");         //如果某个元素是父元素中唯一的子元素，那将会被匹配,否则不会，在 ul 中查找是唯一子元素的 li
+
+    //表单
+    console.log($(":input"));      //查找所有的input元素
+    console.log($(":text"));      //匹配所有的单行文本框
+    console.log($(":password"));     //匹配所有密码框
+    console.log($(":radio"));       //匹配所有单选按钮
+    console.log($(":checkbox"));    //匹配所有提交按钮
+    console.log($(":submit"));      //匹配所有提交按钮
+    console.log($(":image"));      //匹配所有图像域
+    console.log($(":reset"));      //匹配所有重置按钮
+    console.log($(":button"));     //匹配所有按钮
+    console.log($(":file"));      //匹配所有文件域
+</script>
+</body>
+</html>
